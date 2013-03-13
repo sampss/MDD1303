@@ -1,0 +1,69 @@
+http://www.ibm.com/developerworks/web/library/wa-jqmobile/
+
+http://www.webdesignerdepot.com/2011/05/10-handy-jquery-mobile-tips-and-snippets-to-get-you-started/
+
+Listing 1. Bind to the mobileinit event
+
+
+$(document).bind("mobileinit", function(){
+  //apply overrides here
+});
+
+
+
+Listing 2. HTML head section
+
+<html> 
+    <head> 
+        <meta charset="utf-8" /> 
+        <title>Intro to jQuery Mobile</title> 
+        <link rel="stylesheet" href="http://code.jquery.com/mobile
+/1.0a2/jquery.mobile-1.0a2.min.css" /> 
+        <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.0a2
+/jquery.mobile-1.0a2.min.js"></script> 
+    </head>
+    
+    
+Listing 3. Defining a page block
+
+    <body> 
+
+        <div data-role="page" id="page1"> 
+        
+        
+Listing 4. Page header bar section
+                
+                <div data-role="header"> 
+                <h1>Header Bar</h1> 
+            </div><!-- /header --> 
+
+
+Listing 5. Page content section
+
+            <div data-role="content">   
+                <p>Content Section</p>      
+            </div><!-- /content -->
+
+
+Listing 6. Footer bar section
+
+            <div data-role="footer"> 
+                <h4>Footer Bar</h4> 
+            </div><!-- /footer --> 
+        </div><!-- /page --> 
+
+    </body> 
+</html>
+
+
+Listing 7. Adding a nav bar to the footer section
+
+<div data-role="footer" class="ui-bar">
+    <div data-role="controlgroup" data-type="horizontal">
+    <a href="index.html" data-role="button">Today</a>
+    <a href="index.html" data-role="button">Tomorrow</a>
+    <a href="index.html" data-role="button">Week</a>
+    <a href="index.html" data-role="button">No date</a>
+    </div>
+</div><!-- /footer -->
