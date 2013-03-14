@@ -9,7 +9,7 @@
     <div data-role="content">   
         <p>Content Section</p>
 
-		<?php echo $user_info; ?>
+		<?php var_dump($user_info) ?>
 
 <!--        
        <?php foreach($articles as $article){ ?>
