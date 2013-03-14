@@ -7,11 +7,12 @@
     </div><!-- /header --> 
     
     <div data-role="content">   
-        <p>Content Section</p>
-
-		<?php var_dump($user_info) ?>
-
-<!--        
+		<p>
+		<?php var_dump($user_info) ?><!-- var dump user_info to pages view -->
+		</p>
+		
+</div><!-- /content -->		
+<!--   example     
        <?php foreach($articles as $article){ ?>
        
     <p>
@@ -23,4 +24,3 @@
 <?php	}   ?> 
 --> 
   
-    </div><!-- /content -->
