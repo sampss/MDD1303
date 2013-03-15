@@ -10,9 +10,9 @@ class bethere_start extends CI_Controller {
     	$data['user_info'] = $user_info;
     	
     	        
-        $this->load->view('templates/jquery_mobile_header');
-        $this->load->view('pages/jquery_mobile_pages',$data);
-        $this->load->view('templates/jquery_mobile_footer');
+        $this->load->view('templates/jheader');
+        $this->load->view('pages/db_test_page',$data);
+        $this->load->view('templates/jfooter');
         
     }// end public function
 }

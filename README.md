@@ -3,12 +3,34 @@ MDD1303
 
 Project for Mobile Device Deployment 03/13
 
+Project Name: BeThere
+
 Root Directory:  http://localhost:8888/MDD1303/
 
 SQL Dump Files located in SQL_Dump folder
 
 Visual Framework is JQuery Mobile
 
+PHP Framework is Codeigniter
+
+----------------
+NOTES:
+
+Behind on development, after completing API proof of concept decided to move on to view as 
+coding is difficult using frameworks that I am new to and have not had enough experience 
+with JQuery mobile to know the complete design capabilities, after views are complete I 
+will return to the styles.  Currently just implementing the JQuery mobile default view
+in place of final design.  Want to verify everything is up and running before finalizing 
+the look, this will also give the opportunity to verify that I have all the pages/features
+the app will require hammered out. Adjusted Pivotal to reflect this change in process.
+
+NEED TO KNOW:
+
+Login links to blank page that will be used for login
+Signup links to map test, for the API proof of concept
+
+Map API proof is working, having issue with header where <?php echo map['js'] should be ?>,
+caused by trying to pass it into header as needed, to see proof work, just add above to header
 
 -----------------------------------------------------------------------------------------
 
@@ -18,7 +40,7 @@ External CDN Hosted:
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
 
-Internal/Local Hosted:
+Internal/Local Hosted: currently not used
 <link rel="stylesheet" href="application/jquery/jquery.mobile-1.3.0/jquery.mobile-1.3.0.min.css" />
 <script src="application/jquery/jquery/jquery-1.9.1.js"></script>
 <script src="application/jquery/jquery.mobile-1.3.0/jquery.mobile-1.3.0.min.js"></script>

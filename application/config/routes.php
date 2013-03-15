@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "map_test";/*bethere_start, default 'welcome' */
+$route['default_controller'] = "bethere_home";/*bethere_start, default 'welcome' */
 $route['404_override'] = '';
 
 

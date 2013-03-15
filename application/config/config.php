@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/WDD1303/';
+$config['base_url']	= 'http://localhost:8888/MDD1303/';
 
 /*
 |--------------------------------------------------------------------------
