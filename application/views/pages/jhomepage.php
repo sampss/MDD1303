@@ -9,10 +9,10 @@
     
     <div data-role="content">   
 		<p>
-		<?php echo $login_link ?></br>
-		<?php echo $signup_page ?></br>
+		<?php echo $login_link; ?></br>
+		<?php echo $signup_page; ?></br>
+		<?php echo base_url(); ?>
 		need nav bar</br>
 		need a search bar
 		</p>
 	</div><!-- /content -->	
-</div><!-- /page -->

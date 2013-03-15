@@ -29,9 +29,11 @@ NEED TO KNOW:
 Login links to blank page that will be used for login
 Signup links to map test, for the API proof of concept
 
-Map API proof is working, having issue with JQuery and using a single controller with functions,
-to see map api working use this link:
-http://localhost:8888/MDD1303/index.php/map_test_controller/map_test
+Map API proof is working, with assistance from instructor regarding disabling AJAX Links in
+JQuery Mobile. 
+
+Disabling AJAX links removed the back button that was automatically included, added home button
+on pages that are not the home page. 
 
 
 -----------------------------------------------------------------------------------------
@@ -57,7 +59,7 @@ Password: root
 Table List: user_info, location_info, there
 Row List by Table:
 	
-	user_info: uid, username, password, firstname, lastname
+	user_info: uid, username, password, firstname, lastname --> should add a zip column
 	location_info: id, name, street, city, zip, phone
 	there: id, uid, lid, arrive, leave
 
