@@ -10,7 +10,7 @@ class Bethere_Home extends CI_Controller {
 		// Header Buttons    
     	$this->load->helper('url');
     	$data['login_link'] = site_url('bethere_home/userLogin'); 
-    	$data['signup_page'] = site_url('bethere_home/map_test');
+    	$data['signup_page'] = site_url('map_test_controller/map_test');
     	
 		$data['map'] = '';// set map header var to blank
     	        

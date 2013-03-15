@@ -8,8 +8,8 @@
     
     <div data-role="content">  
 		
-		<!--<?php echo $map['html']; ?> did create map, after few changes map['js'] doesnt work-->
-		<?php echo $map['js']?>
+		<?php echo $map['html']; ?><!-- did create map, after few changes map['js'] doesnt work-->
+		<!--<p><?php echo $map['js']?></p>-->
 		
 		
 </div><!-- /content -->		

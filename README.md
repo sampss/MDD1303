@@ -29,8 +29,10 @@ NEED TO KNOW:
 Login links to blank page that will be used for login
 Signup links to map test, for the API proof of concept
 
-Map API proof is working, having issue with header where <?php echo map['js'] should be ?>,
-caused by trying to pass it into header as needed, to see proof work, just add above to header
+Map API proof is working, having issue with JQuery and using a single controller with functions,
+to see map api working use this link:
+http://localhost:8888/MDD1303/index.php/map_test_controller/map_test
+
 
 -----------------------------------------------------------------------------------------
 
