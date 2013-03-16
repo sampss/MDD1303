@@ -11,29 +11,53 @@ class Bethere_Home extends CI_Controller {
     
 		// Header Buttons    
     	$this->load->helper('url');
-    	$data['login_link'] = site_url('bethere_home/userLogin'); 
-    	$data['signup_page'] = site_url('bethere_home/map_test');//map_test_controller/map_test
+    	$data['login_link'] = site_url('bethere_home/user_Login'); 
+    	$data['signup_page'] = site_url('bethere_home/sign_up');//map_test_controller/map_test
     	
     	        
-        $this->load->view('templates/jheader', $data);// links to header template
-        $this->load->view('pages/jhomepage', $data);// links to homepage
-        $this->load->view('templates/jfooter');// links to footer template
+        $this->load->view('templates/header', $data);// links to header template
+        $this->load->view('pages/home_page', $data);// links to homepage
+        $this->load->view('templates/footer');// links to footer template
         
     }// end index function
     
     
-    public function userLogin(){
+    public function user_Login(){
     
     	$data['header_title'] = 'User Login';//used to set header title
     
     	$this->load->helper('url'); // load helper url
-    	$data['home_page'] = site_url('bethere_home'); // use helper to set var
-    	$data['signup_page'] = site_url('bethere_home/map_test');//map_test_controller/map_test
+    	$data['home_page'] = site_url('bethere_home'); // home page button
+    	$data['signup_page'] = site_url('bethere_home/sign_up');// signup page button
     	
     	
-    	$this->load->view('templates/jheader',$data);// links to header template
-    	$this->load->view('pages/jloginpage',$data);// links to login page
-        $this->load->view('templates/jfooter');// links to footer template
+    	$this->load->view('templates/header',$data);// links to header template
+    	$this->load->view('pages/login_page',$data);// links to login page
+        $this->load->view('templates/footer');// links to footer template
+    }
+    
+    
+    
+    public function sign_up(){
+    
+	    $data['header_title'] = 'Sign Up';//used to set header title
+    
+    	$this->load->helper('url'); // load helper url
+    	$data['home_page'] = site_url('bethere_home'); // home page button
+    	$data['login_page'] = site_url('bethere_home/user_login');// login page button
+    	
+    	// get created user info
+    	$username = empty($_POST['newusername']) ? '' : strtolower(trim($_POST['newusername']));
+		$password = empty($_POST['newpassword']) ? '' : trim($_POST['newpassword']);
+		$email = empty($_POST['newemail']) ? '' : strtolower(trim($_POST['newemail']));
+		$zip = empty($_POST['newzip']) ? '' : trim($_POST['newzip']);
+    	session_start();
+    	
+    	
+    	$this->load->view('templates/header',$data);// links to header template
+    	$this->load->view('pages/signup_page',$data);// links to login page
+        $this->load->view('templates/footer');// links to footer template
+    
     }
    
    
@@ -60,9 +84,9 @@ class Bethere_Home extends CI_Controller {
 		$data['header_title'] = 'Map Test';//used to set header title
 		
     	        
-        $this->load->view('templates/jheader',$data);
-        $this->load->view('pages/jmaptestpage',$data);
-        $this->load->view('templates/jfooter');
+        $this->load->view('templates/header',$data);
+        $this->load->view('pages/map_test_page',$data);
+        $this->load->view('templates/footer');
         
     }// end public function
     

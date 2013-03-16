@@ -1,16 +1,12 @@
-<strong>&copy; 2011</strong>	
-</body>
-</html>
-
 <!-- page footer -->
-<!--
+
             <div data-role="footer">
              
-                <h4>Footer Bar</h4> 
+                <h4><?php /*$footer_info*/ ?></h4> 
                 
             </div><!-- /footer --> 
             
         </div><!-- /page --> 
 
 	</body> 
-</html>-->
+</html>
