@@ -16,7 +16,9 @@
         <script type="text/javascript">
 			$(document).bind("mobileinit", function(){
 				$.extend(  $.mobile , {
-				    ajaxLinksEnabled : false
+				    ajaxLinksEnabled : false,
+				    ajaxFormsEnabled : false
+					// find a way to disable ajax forms JQM 
 				});
 			});
 		</script><!--works when not linked to in jqset-->

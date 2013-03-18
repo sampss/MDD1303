@@ -1,15 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Login_Model extends CI_Model{
+class User_Data_Model extends CI_Model{
      
     public function __construct(){    		
     	$this->load->database();
-    }
+    }// end __construct
    
     
     public function get_users(){
     	$query = $this->db->query('SELECT * FROM user_info');
     	return $query->result_array();    	
-    }
+    }// end get_user
+    
+    
+    create_user($data){
+    
+    
+    }// end create_user
  
  
 	 

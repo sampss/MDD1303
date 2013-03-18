@@ -12,7 +12,7 @@
 	    
     <div data-role="content">   
     
-    	<form method="post" action="form.php" data-ajax="false">
+    	<form method="post" action="<?php echo site_url('bethere_home/sign_up'); ?>" >
     			<!-- data-mini="true" not working when applied--> 
     		<label for="newusername">New Username:</label>
     		<input type="text" name="newusername" id="newusername" value="" placeholder="New Username" />
@@ -32,7 +32,7 @@
     		<label for="newuserzip">Zip Code:</label>
     		<input type="text" name="newuserzip" id="newuserzip" value="" placeholder="Zip Code" />
     		
-    		<button type="submit" data-theme="a" name="submit">Submit</button>
+    		<button type="submit" data-theme="a" name="signup_submit" data-inline="true" >Submit</button>
     		
     	</form>
 		

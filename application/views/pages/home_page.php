@@ -9,6 +9,9 @@
     
     <div data-role="content">   
 		<p>		
-		Home page content
+			<div class="ui-btn-right" data-roll="controlgroup" data-type="horizontal">
+				<a href="<?php echo $map_test ?>" data-role="button" data-theme="a">Map Test</a>
+			</div><!-- close control group for buttons -->
+			
 		</p>
 	</div><!-- /content -->	
