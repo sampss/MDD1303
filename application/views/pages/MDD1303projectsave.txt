@@ -1,0 +1,43 @@
+//--------------  testing this section of form validation to see how well it works with html forms				
+				
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('newusername', 'Username', 'trim|required|min_length[5]|max_length[12]|xss_clean|is_unique[user_info.username]');
+		$this->form_validation->set_rules('newpassword', 'Password', 'trim|required|md5');
+		$this->form_validation->set_rules('newemail', 'Email', 'trim|required|valid_email|is_unique[users_info.email]');
+		$this->form_validation->set_rules('newfirstname', 'First Name', 'trim');
+		$this->form_validation->set_rules('newlastname', 'Last Name', 'trim');
+		$this->form_validation->set_rules('newzip', 'Zip', 'trim|integer');
+		//$this->form_validation->run();
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+			
+		}
+		else
+		{
+			//$this->load->view('formsuccess');
+						}// end else for form validation
+//--------------------
+
+/*
+Mostly. Do that and remove the hidden folder '.git' folder
+
+Best course, make a new folder, git init it, add your github origin, pull, then just drag piece by piece over
+
+That way you don't have to worry about the hidden stuff
+*/
+
+
+
+	<?php var_dump($session_spill); ?><br />
+	<?php var_dump($user_exists); ?><br />
+	<?php var_dump($login_user_info); ?>
+	<?php echo $username; ?><br />
+	<?php echo $password; ?><br />
+	<?php echo $uid; ?><br />
+	
+	
+	
+	
+	adfs@asdf.com

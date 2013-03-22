@@ -1,69 +1,162 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
- 
 class Bethere_Home extends CI_Controller {
+
+
+//-----------------------------------Index------------------------------------------------// 
     
     public function index()
-    {	
-    	// set data to home page data 
-    	
+    {	 
+ 
+ 	//------------- Is already logged in test ----------------------------------//
+		//test redirect
+		// $this->session->set_userdata('username', 'wagle');
+			
+		// test if username is set in session 
+		if ($this->session->userdata('username') != '')
+		{
+				// put in header redirect to logged in.
+				redirect('bethere_home/logged_in');
+		}
+		
+    //------------- Initialize Global Session Variable --------------------------//	
+    	// init basic session information here, such as username and password and uid vars
+ 		$current_user = array(
+			'uid' => '',
+			'username' => '',
+			'password' => ''
+		);
+		$this->session->set_userdata($current_user); 
+		 	
+    //------------- Set Title for page ----------------------------------//	
     	$data['header_title'] = 'BeThere Home';//used to set header title
     
-    	/// should start session here, then on login set session
-    
+    //------------- Set Navigation Buttons ------------------------------//	
 		// Header Buttons    
-    	$this->load->helper('url');// load helper url for CI
     	$data['login_link'] = site_url('bethere_home/user_login'); // set login button link
     	$data['signup_page'] = site_url('bethere_home/sign_up');// set signup button link
     	$data['map_test'] = site_url('bethere_home/map_test'); // set map_test button link
-    	        
+    
+    
+    //------------- Load Page View ----------------------------------//		        
         $this->load->view('templates/header', $data);// links to header template
         $this->load->view('pages/home_page', $data);// links to homepage
         $this->load->view('templates/footer');// links to footer template
         
     }// end index function
     
-      
-	  public function user_login()
-    {
+
+
+//-----------------------------------User Login-------------------------------------------// 
     
-	   	// Get POST data
-    	$this->input->post(NULL, TRUE);// null, true = all, xss for post data
-    	
-    	// get created user info from form and create a var in the data array for each item
-    	$data['username'] = empty($_POST['username']) ? '' : strtolower(trim($_POST['username']));
-		$data['password'] = empty($_POST['password']) ? '' : trim($_POST['password']);
+	public function user_login()
+    {    
+
+ 	//------------- Is already logged in test ----------------------------------//
+		// test if username is set in session 
+		if ($this->session->userdata('username') != '')
+		{
+				// put in header redirect to logged in.
+				redirect('bethere_home/logged_in');
+		}
+		
+	//------------- Test Session Data ----------------------------------//			
+		// user to dump test of user variables in session
+		$data['session_spill'] = $this->session->all_userdata();
+    	 	
+    //------------- Get Data From Post ----------------------------------//
+	   	// Get POST data set to variable
+    	$data['login_user_info'] = $this->input->post(NULL, TRUE);// null, true = all, xss for post data
     
+    //------------- Load User Data Model ----------------------------------//	
+    	// load the user data model upon running this function
+    	$this->load->model('user_data_model');// load the user data handling model
+
+    //------------- Set Header Title & Form Error Default--------------------------//	
     	$data['header_title'] = 'User Login';//used to set header title
-    
-    	$this->load->helper('url'); // load helper url
+    	$data['form_error'] = '';
+    	$data['user_exists'] = '';
+    	$data['uid'] = '';
+    	
+    //------------- Set Navigation Buttons ------------------------------//	
     	$data['home_page'] = site_url('bethere_home'); // home page button
     	$data['signup_page'] = site_url('bethere_home/sign_up');// signup page button
+    
+    //------------- Use Post Data Var From Login Form ------------------------//	
+    	// get user info and create a var in the data array for each item and prep them
+    	$data['username'] = empty($data['login_user_info']['login_username']) ? '' : strtolower(trim($data['login_user_info']['login_username']));
+		$data['password'] = empty($data['login_user_info']['login_password']) ? '' : trim($data['login_user_info']['login_password']);
     	
+    //------------- If not empty and matches log user in or throw error--------------//	
+  // this section is breaking controller
+  
+    	if (!empty($data['username']) && !empty($data['password'])) {								
+					
+			// set $data[user_exists] to the results of user_data_model get_user()
+			// pass in $data so $username can be verified
+			$data['user_exists'] = $this->user_data_model->get_user($data);
+					
+			// test if user exists was returned as array // change to return true or false
+			// placed within !empty to only run if username and pass exists
+			if (!empty($data['user_exists']))
+			{					 						
+				// set session variables
+				$this->session->set_userdata('uid', $data['user_exists']['uid']);
+				$this->session->set_userdata('username', $data['user_exists']['username']);
+				$this->session->set_userdata('password', $data['user_exists']['password']);
+
+				// put in header redirect and
+				redirect('bethere_home/logged_in');
+							
+			}// end if empty		
+				
+		} // end if !empty
     	
+    //------------- Load Page View ----------------------------------//	
     	$this->load->view('templates/header',$data);// links to header template
     	$this->load->view('pages/login_page',$data);// links to login page
         $this->load->view('templates/footer');// links to footer template
+
     } // end user login function
     
-    
+   
+
+//------------------------------------Sign Up---------------------------------------------// 
  
-	 public function sign_up()
-	 {	
-    
+	public function sign_up()
+	{	
+
+ 	//------------- Is already logged in test ----------------------------------//			
+		// test if username is set in session 
+		if ($this->session->userdata('username') != '')
+		{
+				// put in header redirect to logged in.
+				redirect('bethere_home/logged_in');
+		}
+
+    //------------- Get Post Data ----------------------------------//
     	// Get POST data
     	$data['new_user'] = $this->input->post(NULL, TRUE);// null, true = all, xss for post data
-    	
-    	// load the user data model upon running this function
-    	//$this->load->model('user_data_model');// currently breaks page
-    	//$data['new_user'] = $this->user_data_model->create_user();
-  	
-	    $data['header_title'] = 'Sign Up';//used to set header title
     
-    	$this->load->helper('url'); // load helper url //possibly set to autoload in CI
+    //------------- Load User Data Model ----------------------------------//	
+    	// load the user data model upon running this function
+    	$this->load->model('user_data_model');// load the user data handling model
+  	
+  	//------------- Set Header Title & Other Var Defaults------------------------//	
+  		// set the header title for the page
+	    $data['header_title'] = 'Sign Up';//used to set header title
+		
+		// set additional $data variables that are used within this function
+		$data['user_exists'] = '';
+		$data['form_error'] = '';
+		$data['valid_email'] = '';
+    
+    //------------- Set Navigation Buttons ------------------------------//	
+    	// set the buttons for this page
     	$data['home_page'] = site_url('bethere_home'); // home page button
     	$data['login_page'] = site_url('bethere_home/user_login');// login page button
     	
+ 	//------------- Prep Data From Post & Set to Data Var--------------------//
     	// get created user info from form and create a var in the data array for each item
     	// $data['new_user'] array has been returned with CI xss filter
     	// using CI recommended $something = $this->input->post('somedata', TRUE); did not work will look at later
@@ -73,34 +166,106 @@ class Bethere_Home extends CI_Controller {
 		$data['firstname'] = empty($data['new_user']['newfirstname']) ? '' : trim($data['new_user']['newfirstname']);
 		$data['lastname'] = empty($data['new_user']['newlastname']) ? '' : trim($data['new_user']['newlastname']);
 		$data['zip'] = empty($data['new_user']['newuserzip']) ? '' : trim($data['new_user']['newuserzip']);
-    	
-    	// start session, look into CI sessions
-    	session_start();
- /*   	
-    	if (!empty($_SESSION['current_user'])){
-			// if user currently logged in header redirect to logged in page
-		}
 		
+
+    	
+	//------------- Attempt to Create User ------------------------------//	
 		// if username and password are not empty try to create new user.
 		if (!empty($data['username']) && !empty($data['password'])) {
-			try{
-				//$this->user_data_model->create_user($data);
-			}// try
-			catch (Exception $e) {
 		
-				$notice = $e->getMessage();
+		//------------- Validate User Input-----------------//
+			// validate user input
+			$this->load->model('validate_data_model');
+			
+			// validate email and return true or false
+			$data['valid_email'] = $this->validate_data_model->validate_email($data);									
+					
+			// set $data[user_exists] to the results of user_data_model get_user()
+			// pass in $data so $username can be verified
+			$data['user_exists'] = $this->user_data_model->verify_username($data);
+					
+			// test if user exists was returned as array
+			// placed within !empty to only run if username and pass is filled out
+			if (!empty($data['user_exists']))
+			{						
+				// if user exists make it equal to string user exists to throw error
+				$data['form_error'] = 
+				'<div id="error_box">
+				<h3 class="error_text">Username already exists, please choose another username.</h3> 
+				</div><br />'; 						
+			
+			// elseif make sure the email is valid.
+			// need to add an email validation to make sure no duplicates				
+			}elseif($data['valid_email'] == FALSE)
+			{
+				$data['form_error'] = 
+				'<div id="error_box">
+				<h3 class="error_text">Please enter a valid email address.</h3> 
+				</div><br />';
+			// else create user in db
+			}else
+			{
+				$data['current_user'] = $this->user_data_model->create_new_user($data);
+				
+				$current_user = array(
+					'username' => $data['username'],
+					'password' => $data['password']
+				);
+				$this->session->set_userdata($current_user);
+				
+				// put in header redirect and
+				redirect('bethere_home/logged_in');
+
+			} // end else/esleif statement
 		
-			}// catch 
-		}
-    	
-*/    	
+				
+		} // end if !empty
+		   	
+   	
     	$this->load->view('templates/header',$data);// links to header template
     	$this->load->view('pages/signup_page',$data);// links to login page
         $this->load->view('templates/footer');// links to footer template
     
-    } // end signup function
+	} // end signup function
+
+
+//-------------------------------------Logged In------------------------------------------// 
    
+	public function logged_in()
+   {
    
+   //------------- Set Header Title -------------------------------------//
+   		// load session and set user var
+   		$user = $this->session->userdata('username'); 		 
+   
+   		$data['user'] = $user;
+   
+   		// set header title
+ 		$data['header_title'] = $user.' Home';//used to set header title 
+ 		
+ 	//------------- Set Navigation Buttons ------------------------------//	
+    	$data['log_out_link'] = site_url('bethere_home/logout'); // home page button	
+ 		
+		// set variables
+ 		$page = 'logged_in_home';
+ 		
+  
+   	    $this->load->view('templates/header', $data);// links to header template
+    	$this->load->view('pages/'.$page, $data);// links to login page
+        $this->load->view('templates/footer');// links to footer template   
+   }// end logged in function
+   
+
+//-------------------------------------Logout Function------------------------------------//
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('bethere_home');
+	}
+
+
+//--------------------------------------Map Test------------------------------------------//
    
     public function map_test()
     {

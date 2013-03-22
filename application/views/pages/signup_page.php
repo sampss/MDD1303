@@ -10,7 +10,11 @@
 			</div><!-- close control group for buttons -->
 	</div> <!-- / headerbar -->
 	    
-    <div data-role="content">   
+    <div data-role="content">
+   
+		<!-- put a div in place with error text if an error exists -->
+		<?php echo $form_error ; ?> <!--returns error div or blank-->
+        	
     
     	<form method="post" action="<?php echo site_url('bethere_home/sign_up'); ?>" >
     			<!-- data-mini="true" not working when applied--> 
@@ -35,5 +39,6 @@
     		<button type="submit" data-theme="a" name="signup_submit" data-inline="true" >Submit</button>
     		
     	</form>
+
 		
 	</div><!-- /content -->
