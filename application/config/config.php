@@ -26,7 +26,7 @@ $config['base_url']	= 'http://localhost:8888/MDD1303/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';//index.php
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------

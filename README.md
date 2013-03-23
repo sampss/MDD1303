@@ -26,14 +26,17 @@ the app will require hammered out. Adjusted Pivotal to reflect this change in pr
 
 NEED TO KNOW:
 
-Login links to blank page that will be used for login
-Signup links to map test, for the API proof of concept
 
-Map API proof is working, with assistance from instructor regarding disabling AJAX Links in
-JQuery Mobile. 
 
-Disabling AJAX links removed the back button that was automatically included, added home button
-on pages that are not the home page. 
+Set config.php session key to THEKEY (required to use sessions in CI)
+
+Set base_url to http://localhost:8888/MDD1303/
+
+Config files for CI, added url helper and session lib to autoload
+
+Map button on start page is for map test API
+
+Disabled Ajax forms and links for JQuery Mobile
 
 
 -----------------------------------------------------------------------------------------

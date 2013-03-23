@@ -42,7 +42,7 @@ class User_Data_Model extends CI_Model{
     public function get_user($data)
     {
     	// CI Active Record Query for uid, username, password
-    	$this->db->select('uid, username, password')->from('user_info')
+    	$this->db->select('uid, username, password, zip')->from('user_info')
     	->where('username', $data['username'])->where('password', $data['password']);
 
         // set results to variable

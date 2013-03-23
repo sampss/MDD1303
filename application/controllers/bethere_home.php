@@ -59,10 +59,6 @@ class Bethere_Home extends CI_Controller {
 				// put in header redirect to logged in.
 				redirect('bethere_home/logged_in');
 		}
-		
-	//------------- Test Session Data ----------------------------------//			
-		// user to dump test of user variables in session
-		$data['session_spill'] = $this->session->all_userdata();
     	 	
     //------------- Get Data From Post ----------------------------------//
 	   	// Get POST data set to variable
@@ -77,6 +73,7 @@ class Bethere_Home extends CI_Controller {
     	$data['form_error'] = '';
     	$data['user_exists'] = '';
     	$data['uid'] = '';
+    	$data['zip'] = '';
     	
     //------------- Set Navigation Buttons ------------------------------//	
     	$data['home_page'] = site_url('bethere_home'); // home page button
@@ -104,6 +101,7 @@ class Bethere_Home extends CI_Controller {
 				$this->session->set_userdata('uid', $data['user_exists']['uid']);
 				$this->session->set_userdata('username', $data['user_exists']['username']);
 				$this->session->set_userdata('password', $data['user_exists']['password']);
+				$this->session->set_userdata('zip', $data['user_exists']['zip']);
 
 				// put in header redirect and
 				redirect('bethere_home/logged_in');
@@ -207,11 +205,11 @@ class Bethere_Home extends CI_Controller {
 			{
 				$data['current_user'] = $this->user_data_model->create_new_user($data);
 				
-				$current_user = array(
-					'username' => $data['username'],
-					'password' => $data['password']
-				);
-				$this->session->set_userdata($current_user);
+				// after creating the user, retrieve data to be set including uid
+				$created_user = $this->user_data_model->get_user($data);
+				
+				// set session var to include user data, uid, username, pass, zip
+				$this->session->set_userdata($created_user);
 				
 				// put in header redirect and
 				redirect('bethere_home/logged_in');
@@ -234,20 +232,35 @@ class Bethere_Home extends CI_Controller {
 	public function logged_in()
    {
    
-   //------------- Set Header Title -------------------------------------//
+   //--------------Set if username seesion NULL redirect to Login--------//
+   
+   
+   
+   
+ 	//------------- Set Variables----------------------------------------//	
    		// load session and set user var
-   		$user = $this->session->userdata('username'); 		 
+   		$user = $this->session->userdata('username'); 		    		
+ 		$zip = this->session->userdata('zip');
+   		$page = 'logged_in_home';
    
    		$data['user'] = $user;
-   
+
+   //------------- Set Header Title -------------------------------------//   
    		// set header title
  		$data['header_title'] = $user.' Home';//used to set header title 
  		
  	//------------- Set Navigation Buttons ------------------------------//	
+    	// header nav buttons
     	$data['log_out_link'] = site_url('bethere_home/logout'); // home page button	
+    	
+    	// set other nav buttons
+
  		
-		// set variables
- 		$page = 'logged_in_home';
+ 	//------------- load location model --------------------------------//	
+ 		$this->load->model('location_model');
+ 		$this->load->model('there_model');
+ 		
+ 		
  		
   
    	    $this->load->view('templates/header', $data);// links to header template
