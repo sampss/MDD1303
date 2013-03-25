@@ -9,23 +9,40 @@
 			
 	</div> <!-- / headerbar -->
 	    
-    <div data-role="content">
+    <div data-role="content" style="padding:0px;margin:0px;">
 	<?php echo $test_output;?>
 	
-	<div class="left" style="flaot:left;">
-		<p class="left">03/10/13</p>
-		<p class="right" style="float:right;">Sully's</p>
-		<br />
-		<p style = "float:left;">123 somedrive, somerset ky 42519</p>
-		<br/>
-		<br/>
-		<p>Arrive</p>
-		<p>2:00pm</p>
-		<p style="float:right;">Leave</p>
-		<br/>
-		<p style="float:right;">4:00pm</p>
+	
+	<div class="container_1" style="border:1px solid black;background-color:lightgray;width:100%;margin:0px;padding:0px;">
+		<div style="width:100%;background-color:lightgreen;border-bottom:1px solid black;padding:0px;margin:0px;height:25px;">
+			<p class="my_dates" style="float:left;padding:0px;margin:5px 0px 0px 5px;width:30%;">03/10/13</p>
+			<p class="my_pace_titles" style="float:left;padding:0px;margin:5px 0px 0px 0px;width:30%;text-align:center;">Sully's</p>
+			<a href="<?php echo site_url('controller/function'.$id_variable); ?>" class="my_edit_links" style="float:right;padding:0px;margin:5px 5px 0px 0px;width:30%;text-align:right;">Edit</a>
+			<div style="clear: both;margin:0px;padding:0px;"></div>
+		</div>
+		
+		<div style="width:100%;padding:0px;margin:0px;">
+			<p style = "padding:0px;margin:5px 0px 0px 5px;">123 somedrive, somerset ky 42519</p>
+		</div>
+		<div>
+		<div style="width:50%;float:left">
+			<div style="float:left;width:50%;">
+				<p style="margin:5px 0px 0px 5px;">Arrive: <br/> 2:00 PM</p>
+			</div>
+			<div style="width:50%;float:right;">
+				<p style="margin:5px 0px 0px 5px;">Leave: <br/>4:00 PM</p>			
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div style="width:50%;float:right;">
+			<a href="#" data-role="button" data-inline="true" data-mini="true" data-theme="a" style="float:right;">Locate</a>
+			<div style="clear: both;"></div>
+		</div>
+		<div style="clear: both;"></div>
+		</div>
 		
 	</div>
+	
 	<?php
 /*		// how to create multiple items using $my_locations
 		foreach( $my_locations as $key => $obj )
