@@ -13,18 +13,14 @@ class There_Model extends CI_Model{
 
 	public function get_locations_uid($data)
 	{
-		// CI Active Record Query for uid, username, password
-    	$this->db->select('*')->from('there')
+		// CI Active Record Query for user locations
+    	/*$query =*/ $this->db->select('*')->from('there')
     	->where('uid', $data['uid']);
 
-        // set results to variable
         $query = $this->db->get();
-        
-        // set query results to an array
-        $row = $query->row_array();
-    	
-    	// return results from the query in an array
-    	return $row;    	
+
+		return $query->result_array();        
+   	
 	
 	}
 	
@@ -44,3 +40,6 @@ class There_Model extends CI_Model{
     	return $row;    	
 	
 	}
+	
+	
+}

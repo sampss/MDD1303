@@ -48,7 +48,7 @@ class Bethere_Home extends CI_Controller {
 
 
 //-----------------------------------User Login-------------------------------------------// 
-    
+   
 	public function user_login()
     {    
 
@@ -228,7 +228,7 @@ class Bethere_Home extends CI_Controller {
 
 
 //-------------------------------------Logged In------------------------------------------// 
-   
+  
 	public function logged_in()
    {
    
@@ -239,15 +239,17 @@ class Bethere_Home extends CI_Controller {
    
  	//------------- Set Variables----------------------------------------//	
    		// load session and set user var
-   		$user = $this->session->userdata('username'); 		    		
- 		$zip = this->session->userdata('zip');
-   		$page = 'logged_in_home';
-   
-   		$data['user'] = $user;
+   		$data['username'] = $this->session->userdata('username'); 		    		
+ 		$data['zip'] = $this->session->userdata('zip');
+ 		$data['uid'] = $this->session->userdata('uid');
+ 		$data['lid'] = '';
+  		$page = 'logged_in_home';
+  		$data['test_output'] = '';
+   		
 
    //------------- Set Header Title -------------------------------------//   
    		// set header title
- 		$data['header_title'] = $user.' Home';//used to set header title 
+ 		$data['header_title'] = $data['username'].' Home'; //used to set header title 
  		
  	//------------- Set Navigation Buttons ------------------------------//	
     	// header nav buttons
@@ -259,13 +261,45 @@ class Bethere_Home extends CI_Controller {
  	//------------- load location model --------------------------------//	
  		$this->load->model('location_model');
  		$this->load->model('there_model');
+ 	
+ 	 //------------- Get user locations and location info ------------//	
+ 		$my_locations = $this->there_model->get_locations_uid($data);
+ 		$location_info = array();
+		
+ 			if (!empty($my_locations))
+ 			{	
+ 				
+ 				foreach($my_locations as $location)
+ 				{
+ 					$data['lid'] = $location['lid']; 
+ 					$location_info [] = $this->location_model->get_location_info($data);
+				
+ 				}
+ 				
+ 				// combine location info with my locations
+				$result = array();
+ 				foreach($my_locations as $key=>$val)
+ 				{
+ 					
+ 					$val2 = $location_info[$key];
+ 					$result[$key] = $val + $val2;
+ 					
+ 				}
+
+ 				// add new array to data array
+ 				$data['my_locations'] = $result;
+ 			
+ 			}else
+ 			{
+ 				$data['test_output'] = 'No Data';
+ 			}
  		
- 		
- 		
+ 	
   
    	    $this->load->view('templates/header', $data);// links to header template
     	$this->load->view('pages/'.$page, $data);// links to login page
         $this->load->view('templates/footer');// links to footer template   
+
    }// end logged in function
    
 

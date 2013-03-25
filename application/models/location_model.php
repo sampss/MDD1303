@@ -10,7 +10,7 @@ class Location_Model extends CI_Model{
     	$this->load->database();
     }// end __construct
 
-	public function get_locations($data)
+	public function get_location_info($data)
 	{
 		// CI Active Record Query for uid, username, password
     	$this->db->select('*')->from('location_info')
