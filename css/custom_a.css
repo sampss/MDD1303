@@ -1,0 +1,115 @@
+.custom_content
+{
+	padding:0px;
+	margin:0px;
+}
+
+.container_1
+{ 
+	border:1px solid black;
+	background-color:lightgray;
+	width:100%;
+	margin:0px;
+	padding:0px;
+}
+
+
+.container_head
+{
+	width:100%;
+	background-color:lightgreen;
+	border-bottom:1px solid black;
+	padding:0px;
+	margin:0px;
+	height:25px;
+}
+
+.my_dates
+{
+	float:left;
+	padding:0px;
+	margin:5px 0px 0px 5px;
+	width:30%;
+}
+
+.my_place_titles
+{
+	float:left;
+	padding:0px;
+	margin:5px 0px 0px 0px;
+	width:30%;
+	text-align:center;
+}
+
+.my_edit_links
+{
+	float:right;
+	padding:0px;
+	margin:5px 5px 0px 0px;
+	width:30%;
+	text-align:right;
+}
+
+.place_address
+{
+	width:100%;
+	padding:0px;
+	margin:0px;
+}
+
+.place_address_p
+{
+	padding:0px;
+	margin:5px 0px 0px 5px;
+}
+
+.my_times_button
+{
+	width:50%;
+	float:left
+}
+
+.arrive_time_div
+{
+	float:left;
+	width:50%;
+}
+
+.time_p
+{
+	margin:5px 0px 0px 5px;
+}
+
+.leave_time_div
+{
+	width:50%;
+	float:right;
+}
+
+.locate_button_div
+{
+	width:50%;
+	float:right;
+}
+
+.locate_button
+{
+	float:right;
+}
+
+.clear_fix
+{
+	clear: both;
+}
+
+
+
+
+
+
+
+
+
+
+
+
