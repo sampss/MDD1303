@@ -14,12 +14,13 @@
 	<?php 
 	foreach( $my_locations as $key => $obj )
 	{
+	$str = $this->uri->assoc_to_uri($obj);
 	echo '
 	<div class="container_1">
 		<div class="container_head">
 			<p class="my_dates">'.$obj['day'].'</p>
 			<p class="my_place_titles">'.$obj['name'].'</p>
-			<a href="#" class="my_edit_links">Edit</a>
+			<a href="'.site_url('bethere_home/logged_in/'.$str).'" class="my_edit_links">Edit</a>
 			<div class="clear_fix"></div>
 		</div>
 		
@@ -37,7 +38,7 @@
 				<div class="clear_fix"></div>
 			</div>
 			<div class="locate_button_div">
-				<a href="#" data-role="button" data-inline="true" data-mini="true" data-theme="a" class="locate_button">Locate</a>
+				<a href="'.site_url('bethere_home/map_test/'.$str).'" data-role="button" data-inline="true" data-mini="true" data-theme="a" class="locate_button">Locate</a>
 				<div class="clear_fix"></div>
 			</div>
 			<div class="clear_fix"></div>
