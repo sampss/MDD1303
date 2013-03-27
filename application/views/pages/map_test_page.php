@@ -4,7 +4,7 @@
 			<div class="ui-btn-left" data-roll="controlgroup" data-type="horizontal" data-mini="true">
 				<a href="<?php echo $home_page ?>" data-role="button" data-theme="a">Home</a>
 			</div><!-- close control group for buttons --> 
-			<h1>BeThere Login</h1> 
+			<h1><?php echo $header_title; ?></h1> 
 
     </div><!-- /header --> 
     

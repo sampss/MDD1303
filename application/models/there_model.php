@@ -24,7 +24,7 @@ class There_Model extends CI_Model{
 	
 	}
 	
-		public function get_locations_zip($data)
+	public function get_locations_zip($data)
 	{
 		// CI Active Record Query for uid, username, password
     	$this->db->select('*')->from('there')
@@ -40,6 +40,34 @@ class There_Model extends CI_Model{
     	return $row;    	
 	
 	}
+
+	public function update_time($data)
+	{
+			
+		$update_info = array();
+		$update_info['day'] = $data['edit_date'];
+		$update_info['arrive'] = $data['edit_arrive'];
+		$update_info['leave'] = $data['edit_leave'];
+
+
+		$this->db->where('id', $data['edit_id']);
+		$this->db->update('there', $update_info);
+	
+	}
+	
+	public function delete_time($data)
+	{
+		$this->db->delete('there',array('id'=>$data['id']));
+		
+	}
 	
 	
-}
+}// closes there model
+	
+	
+	
+	
+	
+
+
+

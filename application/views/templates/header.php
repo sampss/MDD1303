@@ -29,4 +29,4 @@
 		<?php if (!empty($map['js'])){echo $map['js'];} ?>
 
     </head> 
-    <body><!-- body opening tag -->
+<body><!-- body opening tag -->

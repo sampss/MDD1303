@@ -112,7 +112,7 @@ class Bethere_Home extends CI_Controller {
     	
     //------------- Load Page View ----------------------------------//	
     	$this->load->view('templates/header',$data);// links to header template
-    	$this->load->view('pages/login_page',$data);// links to login page
+    	$this->load->view('pages/login_form',$data);// links to login page
         $this->load->view('templates/footer');// links to footer template
 
     } // end user login function
@@ -221,7 +221,7 @@ class Bethere_Home extends CI_Controller {
 		   	
    	
     	$this->load->view('templates/header',$data);// links to header template
-    	$this->load->view('pages/signup_page',$data);// links to login page
+    	$this->load->view('pages/signup_form',$data);// links to login page
         $this->load->view('templates/footer');// links to footer template
     
 	} // end signup function
@@ -232,7 +232,7 @@ class Bethere_Home extends CI_Controller {
 	public function logged_in()
    {
    
-   //--------------Set if username seesion NULL redirect to Login--------//
+ 	//--------------Set if username seesion NULL redirect to Login--------//
    
    
    
@@ -243,7 +243,7 @@ class Bethere_Home extends CI_Controller {
  		$data['zip'] = $this->session->userdata('zip');
  		$data['uid'] = $this->session->userdata('uid');
  		$data['lid'] = '';
-  		$page = 'logged_in_home';
+  		$page = 'logged_in_home_page';
   		$data['test_output'] = '';
    		
 
@@ -257,7 +257,7 @@ class Bethere_Home extends CI_Controller {
     	
     	// set other nav buttons
 
- 		
+		
  	//------------- load location model --------------------------------//	
  		$this->load->model('location_model');
  		$this->load->model('there_model');
@@ -303,6 +303,67 @@ class Bethere_Home extends CI_Controller {
    }// end logged in function
    
 
+
+//-------------------------------------Edit A Time----------------------------------------//
+	public function edit_time_form()
+	{
+	
+	//------------- Get Post Data ----------------------------------//
+    	// Get POST data
+    	$data['edit_time'] = $this->input->post(NULL, TRUE);// null, true = all, xss for post data
+    	
+ 	//------------- Set Variables From Session-----------------------//	
+   		// load session and set user var
+   		$data['username'] = $this->session->userdata('username'); 		    		
+ 		$data['zip'] = $this->session->userdata('zip');
+ 		$data['uid'] = $this->session->userdata('uid');
+ 		
+ 		
+ 	//------------- Set Other Variables------------------------------//	 		
+ 		$data['form_error'] = '';
+ 		$data['edit_this_time'] = $this->uri->uri_to_assoc(3);
+
+
+   //------------- Set Header Title -------------------------------------//   
+   		// set header title
+ 		$data['header_title'] = $data['username'].' Edit Time'; //used to set header title 
+ 		
+ 	//------------- Set Navigation Buttons ------------------------------//	
+    	// header nav buttons
+    	$data['home_page'] = site_url('bethere_home');
+    	$data['log_out_link'] = site_url('bethere_home/logout'); // home page button
+
+ 	//------------- Prep Data From Post & Set to Data Var--------------------//
+    	// get created user info from form and create a var in the data array for each item
+    	// $data['edit_time'] array has been returned with CI xss filter
+    	$data['edit_date'] = empty($data['edit_time']['edit_date']) ? '' : trim($data['edit_time']['edit_date']);
+		$data['edit_arrive'] = empty($data['edit_time']['edit_arrive']) ? '' : trim($data['edit_time']['edit_arrive']);
+		$data['edit_leave'] = empty($data['edit_time']['edit_leave']) ? '' : trim($data['edit_time']['edit_leave']);
+		$data['edit_id'] = empty($data['edit_time']['edit_id']) ? '' : trim($data['edit_time']['edit_id']);
+		
+		if (!empty($data['edit_time']))
+		{
+				
+				//load model with update function
+				$this->load->model('there_model');
+									 						
+				// run update function
+				$this->there_model->update_time($data);
+
+				// put in header redirect and
+				redirect('bethere_home');
+							
+		}// end if empty	
+		
+
+   	    $this->load->view('templates/header', $data);// links to header template
+    	$this->load->view('pages/edit_time_form', $data);// links to login page
+        $this->load->view('templates/footer');// links to footer template   
+	
+	} // end edit my place
+
+
+
 //-------------------------------------Logout Function------------------------------------//
 
 	public function logout()
@@ -312,12 +373,23 @@ class Bethere_Home extends CI_Controller {
 	}
 
 
+//-------------------------------------Delete Time ---------------------------------------//
+
+	public function delete_this_time()
+	{
+		$data = $this->uri->uri_to_assoc(3);
+		
+		$this->load->model('there_model');
+		$this->there_model->delete_time($data);
+		
+		redirect('bethere_home');
+	}
+
 //--------------------------------------Map Test------------------------------------------//
    
     public function map_test()
     {
     
-    	$this->load->helper('url'); // load helper url
     	$data['home_page'] = site_url('bethere_home'); // use helper to set var
     
     	// Load the library
