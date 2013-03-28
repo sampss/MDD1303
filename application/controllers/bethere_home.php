@@ -232,12 +232,7 @@ class Bethere_Home extends CI_Controller {
 	public function logged_in()
    {
    
- 	//--------------Set if username seesion NULL redirect to Login--------//
-   
-   
-   
-   
- 	//------------- Set Variables----------------------------------------//	
+   //------------- Set Variables----------------------------------------//	
    		// load session and set user var
    		$data['username'] = $this->session->userdata('username'); 		    		
  		$data['zip'] = $this->session->userdata('zip');
@@ -245,9 +240,16 @@ class Bethere_Home extends CI_Controller {
  		$data['lid'] = '';
   		$page = 'logged_in_home_page';
   		$data['test_output'] = '';
+  		
+  		
+	//--------------Set if username seesion NULL redirect to Login--------//
+  		if(empty($data['username']))
+   		{
+			redirect('bethere_home');
+   		} 
    		
 
-   //------------- Set Header Title -------------------------------------//   
+	//------------- Set Header Title -------------------------------------//   
    		// set header title
  		$data['header_title'] = $data['username'].' Home'; //used to set header title 
  		
@@ -264,8 +266,8 @@ class Bethere_Home extends CI_Controller {
  	
  	 //------------- Get user locations and location info ------------//	
  		$my_locations = $this->there_model->get_locations_uid($data);
- 		$location_info = array();
-		
+
+ 		$location_info = array();		
  			if (!empty($my_locations))
  			{	
  				
@@ -317,7 +319,12 @@ class Bethere_Home extends CI_Controller {
    		$data['username'] = $this->session->userdata('username'); 		    		
  		$data['zip'] = $this->session->userdata('zip');
  		$data['uid'] = $this->session->userdata('uid');
- 		
+ 	
+	//--------------Set if username seesion NULL redirect to Login--------//
+  		if(empty($data['username']))
+   		{
+			redirect('bethere_home');
+   		}  		
  		
  	//------------- Set Other Variables------------------------------//	 		
  		$data['form_error'] = '';
@@ -362,6 +369,86 @@ class Bethere_Home extends CI_Controller {
 	
 	} // end edit my place
 
+
+//-------------------------------------Be Somewhere---------------------------------------//
+	public function be_somewhere()
+	{
+    	
+ 	//------------- Set Variables From Session-----------------------//	
+   		// load session and set user var
+   		$data['username'] = $this->session->userdata('username'); 		    		
+ 		$data['zip'] = $this->session->userdata('zip');
+ 		$data['uid'] = $this->session->userdata('uid');
+ 		
+	//--------------Set if username seesion NULL redirect to Login--------//
+  		if(empty($data['username']))
+   		{
+			redirect('bethere_home');
+   		} 
+ 		
+ 	//------------- Set Other Variables------------------------------//	 		
+ 		$data['test_output'] = '';
+
+   //------------- Set Header Title -------------------------------------//   
+   		// set header title
+ 		$data['header_title'] = $data['username'].' Be Somewhere'; //used to set header title 
+ 		
+ 	//------------- Set Navigation Buttons ------------------------------//	
+    	// header nav buttons
+    	$data['log_out_link'] = site_url('bethere_home/logout'); // home page button
+	
+	//------------- Bring back locations ---------------------------------//	
+
+		$this->load->model('location_model');
+		$data['local_locations'] = $this->location_model->get_locations($data);	
+				
+
+   	    $this->load->view('templates/header', $data);// links to header template
+    	$this->load->view('pages/be_somewhere_page', $data);// links to login page
+        $this->load->view('templates/footer');// links to footer template   
+
+		
+	}
+	
+//-------------------------------------Be Somewhere Form----------------------------------//
+	public function be_somewhere_form()
+	{
+    	
+   	    $this->load->view('templates/header', $data);// links to header template
+    	$this->load->view('pages/be_somewhere_page', $data);// links to login page
+        $this->load->view('templates/footer');// links to footer template   
+
+		
+	}
+	
+//-------------------------------------Popular Places-------------------------------------//
+	public function popular_places()
+	{
+	
+ 	//------------- Set Variables From Session-----------------------//	
+   		// load session and set user var
+   		$data['username'] = $this->session->userdata('username'); 		    		
+ 		$data['zip'] = $this->session->userdata('zip');
+ 		$data['uid'] = $this->session->userdata('uid');
+ 		
+ 		
+ 	//------------- Set Other Variables------------------------------//	 		
+ 		$data['test_output'] = '';
+
+   //------------- Set Header Title -------------------------------------//   
+   		// set header title
+ 		$data['header_title'] = $data['username'].' Popular Places'; //used to set header title 
+ 		
+ 	//------------- Set Navigation Buttons ------------------------------//	
+    	// header nav buttons
+    	$data['log_out_link'] = site_url('bethere_home/logout'); // home page button	
+
+   	    $this->load->view('templates/header', $data);// links to header template
+    	$this->load->view('pages/popular_places_page', $data);// links to login page
+        $this->load->view('templates/footer');// links to footer template   
+
+		
+	}
 
 
 //-------------------------------------Logout Function------------------------------------//

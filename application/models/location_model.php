@@ -27,6 +27,35 @@ class Location_Model extends CI_Model{
 	
 	}
 	
+	public function get_locations($data)
+	{
+		if(!empty($data['search_zip']))
+		{
+			// CI Active Record Query for uid, username, password
+    		$this->db->select('*')->from('location_info')
+    		->where('zip', $data['search_zip']);
+			
+			// set results to variable
+			$query = $this->db->get();
+			
+			// set query results to an array
+       		return $query->result_array(); 
+			
+		}else
+		{
+			// CI Active Record Query for uid, username, password
+	    	$this->db->select('*')->from('location_info');
+
+        	// set results to variable
+       		$query = $this->db->get();
+        
+       		// set query results to an array
+        	return $query->result_array();
+   	
+		}
+	}// end get_locations
+	
+	
 	public function create_location($data)
 	{
 		

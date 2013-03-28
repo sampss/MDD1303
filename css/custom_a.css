@@ -97,6 +97,69 @@
 	float:right;
 }
 
+/* specifically for be_somwhere_page */
+
+.search_create_container
+{
+	background-color:lightgrey;
+	border-bottom: 1px solid black;
+}
+
+.create_container
+{
+	float:left;
+	width: 100%;
+}
+
+.create_container p
+{
+	margin-left: 5px;
+	float:left;
+}
+
+.search_container
+{
+	float: right;
+	width: 100%;
+}
+
+.search_field_container
+{
+	margin: 0px 0px 0px 10px;
+	padding: 7px 15px 0px 0px;
+	float:left;
+	width: 65%;
+}
+
+.search_submit_div
+{
+	float:right;
+}
+
+.add_button
+{
+	float:right;
+}
+
+.be_somewhere_name
+{
+	font-size: 1.5em;
+}
+
+.plc_info_div
+{
+	width:50%;
+	float: left;	
+}
+
+.be_somewhere_button_div
+{
+	width:50%;
+	float: right;
+}
+
+/* end be_somwhere_page */
+
 .clear_fix
 {
 	clear: both;

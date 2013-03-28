@@ -9,9 +9,9 @@
 
     		<nav data-role="navbar">
     			<ul>
-					<li><a href="#" class="ui-btn-active ui-state-persist" >My Places</a></li>
-					<li><a href="#">Popular Places</a></li>
-					<li><a href="#">Be Places</a></li>
+					<li><a href="<?php echo site_url('bethere_home'); ?>" class="ui-btn-active ui-state-persist" >My Places</a></li>
+					<li><a href="<?php echo site_url('bethere_home/be_somewhere'); ?>">Be Somewhere</a></li>
+					<li><a href="<?php echo site_url('bethere_home/popular_places'); ?>">Popular Places</a></li>
 				</ul>
 			</nav>
 
@@ -57,28 +57,6 @@
 	</div>';
 	
 	}
-	?>
-	
-	<?php
-/*		// how to create multiple items using $my_locations
-		foreach( $my_locations as $key => $obj )
-		{
-		
-			echo '<div class="ui-grid-a custom-a">';			
-			echo '<div class="ui-block-a">';
-			echo '<h3>'.$obj['name'].'</h3>';
-			echo '</div>';
-			echo '<div class="ui-block-b custom-b">';
-			echo '<p>'.$obj['arrive'].'</p>';
-			echo '<p>'.$obj['leave'].'</p>';
-			echo '</div>';			
-			echo '</div>';
-			
-		}
-		
-		
-		<?php site_url('controller/function'.$id_variable); ?>
-*/		
 	?>
 		
 	</div><!-- /content -->
