@@ -373,6 +373,10 @@ class Bethere_Home extends CI_Controller {
 //-------------------------------------Be Somewhere---------------------------------------//
 	public function be_somewhere()
 	{
+	
+	//------------- Get Post Data ----------------------------------//
+    	// Get POST data
+    	$data['search_form'] = $this->input->post(NULL, TRUE);// null, true = all, xss for post data
     	
  	//------------- Set Variables From Session-----------------------//	
    		// load session and set user var
@@ -388,6 +392,7 @@ class Bethere_Home extends CI_Controller {
  		
  	//------------- Set Other Variables------------------------------//	 		
  		$data['test_output'] = '';
+ 		$data['search_zip'] = '';
 
    //------------- Set Header Title -------------------------------------//   
    		// set header title
@@ -396,7 +401,10 @@ class Bethere_Home extends CI_Controller {
  	//------------- Set Navigation Buttons ------------------------------//	
     	// header nav buttons
     	$data['log_out_link'] = site_url('bethere_home/logout'); // home page button
-	
+    	
+   //-------------- Set Post Variable For Search Function ----------------//
+    	$data['search_zip'] = empty($data['search_form']['search_zip']) ? '' : trim($data['search_form']['search_zip']);
+    	
 	//------------- Bring back locations ---------------------------------//	
 
 		$this->load->model('location_model');
