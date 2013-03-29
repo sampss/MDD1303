@@ -14,7 +14,24 @@
     <div data-role="content" class="custom_content">
 		<?php echo $test_output;?>
 		<?php 
+
+		
 			$add_time = $this->uri->uri_to_assoc(3);
+			
+			if(empty($add_time))
+			{
+				$add_time = array(
+					'name' => '',
+					'street' => '',
+					'city' => '',
+					'state' => '',
+					'zip' => '',
+					'phone' => '',
+					'lid' => ''
+				);
+				
+				
+			}
 		
 			if (!empty($add_time['hidden']))
 			{
@@ -53,25 +70,25 @@
     
     
 		<div class="create_form_div">
-    	<form method="post" action="<?php echo site_url('bethere_home/be_somewhere_form'); ?>" >
+    	<form method="post" action="<?php echo site_url('bethere_home/be_somewhere'); ?>" >
     	
     		<label for="add_name"><?php echo $label_array['l_name']; ?></label>
-    		<input type="<?php echo $add_time['hidden']; ?>" name="add_name" id="add_name" value="<?php echo $add_time['name']; ?>" placeholder="" />
+    		<input type="<?php echo $add_time['hidden']; ?>" name="add_name" id="add_name" value="<?php echo $add_time['name']; ?>" placeholder="Place Name" />
     		
     		<label for="add_street"><?php echo $label_array['l_street']; ?></label>
-    		<input type="<?php echo $add_time['hidden']; ?>" name="add_street" id="add_street" value="<?php echo $add_time['street']; ?>" placeholder="" />
+    		<input type="<?php echo $add_time['hidden']; ?>" name="add_street" id="add_street" value="<?php echo $add_time['street']; ?>" placeholder="Street" />
     		
     		<label for="add_city"><?php echo $label_array['l_city']; ?></label>    		
-    		<input type="<?php echo $add_time['hidden']; ?>" name="add_city" id="add_city" value="<?php echo $add_time['city']; ?>" placeholder="" />
+    		<input type="<?php echo $add_time['hidden']; ?>" name="add_city" id="add_city" value="<?php echo $add_time['city']; ?>" placeholder="City" />
     		
     		<label for="add_state"><?php echo $label_array['l_state']; ?></label>
-    		<input type="<?php echo $add_time['hidden']; ?>" name="add_state" id="add_state" value="<?php echo $add_time['state']; ?>" placeholder="" />
+    		<input type="<?php echo $add_time['hidden']; ?>" name="add_state" id="add_state" value="<?php echo $add_time['state']; ?>" placeholder="State" />
 
     		<label for="add_zip"><?php echo $label_array['l_zip']; ?></label>    		
-    		<input type="<?php echo $add_time['hidden']; ?>" name="add_zip" id="add_zip" value="<?php echo $add_time['zip']; ?>" placeholder="" />
+    		<input type="<?php echo $add_time['hidden']; ?>" name="add_zip" id="add_zip" value="<?php echo $add_time['zip']; ?>" placeholder="Zip" />
     		
     		<label for="add_phone"><?php echo $label_array['l_phone']; ?></label>
-    		<input type="<?php echo $add_time['hidden']; ?>" name="add_phone" id="add_phone" value="<?php echo $add_time['phone']; ?>" placeholder="" />    	
+    		<input type="<?php echo $add_time['hidden']; ?>" name="add_phone" id="add_phone" value="<?php echo $add_time['phone']; ?>" placeholder="Phone" />    	
  
     		<label for="add_date">Date:</label>
     		<input type="text" name="add_date" id="add_date" value="" placeholder="Date" />

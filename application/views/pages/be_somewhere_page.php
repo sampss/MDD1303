@@ -34,7 +34,7 @@
     	<div class="create_container">
     		<p>If you cant find the place your looking for add it!</p>
     		<div class="add_button_div">
-			<a href="<?php echo site_url('bethere_home/be_somewhere'); ?>" data-role="button" data-inline="true" data-mini="true" data-theme="a" class="add_button">Add</a>
+			<a href="<?php echo site_url('bethere_home/be_somewhere_form'); ?>" data-role="button" data-inline="true" data-mini="true" data-theme="a" class="add_button">Add</a>
     		</div>
     	</div>
     	<div class="clear_fix"></div>
