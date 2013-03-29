@@ -37,6 +37,21 @@ class There_Model extends CI_Model{
         return $query->result_array();    	
 	
 	}
+	
+	public function create_time($data)
+	{
+		$new_there = array();
+		$new_there['uid'] = $data['uid'];
+		$new_there['lid'] = $data['lid'];
+		$new_there['day'] = $data['day'];
+		$new_there['arrive'] = $data['arrive'];
+		$new_there['leave'] = $data['leave'];
+	
+		$this->db->insert('there', $new_there);
+		
+		// id is the field not included, genereated by db
+	}
+	
 
 	public function update_time($data)
 	{

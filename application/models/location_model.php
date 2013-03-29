@@ -57,9 +57,17 @@ class Location_Model extends CI_Model{
 	
 	
 	public function create_location($data)
-	{
+	{		
+		$new_location = array();
+		$new_location['name'] = $data['name'];
+		$new_location['street'] = $data['street'];
+		$new_location['city'] = $data['city'];
+		$new_location['state'] = $data['state'];
+		$new_location['zip'] = $data['zip'];
+		$new_location['phone'] = $data['phone'];
 		
-	
+		$this->db->insert('location_info', $new_location);
+		
 	}
 	
 	public function update_location($data)
