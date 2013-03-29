@@ -160,6 +160,23 @@
 
 /* end be_somwhere_page */
 
+/* be_somewhere_form */
+
+.create_form_div
+{
+	padding: 5px;
+}
+
+.be_form_submit
+{
+	float:right;
+	margin-right: 15%;
+}
+
+/* end be_somewhere_form */
+
+
+
 .clear_fix
 {
 	clear: both;

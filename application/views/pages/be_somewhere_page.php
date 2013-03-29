@@ -46,6 +46,7 @@
 	foreach( $local_locations as $key => $obj )
 	{
 	$str = $this->uri->assoc_to_uri($obj);
+	//$str = $str.'/hidden/hidden';// allows to hid some parts of the form if the link is selected for this item currently not using
 	echo '
 	<div class="container_1">
 		
