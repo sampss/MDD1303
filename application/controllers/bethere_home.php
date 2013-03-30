@@ -458,6 +458,48 @@ class Bethere_Home extends CI_Controller {
 		
 	}
 	
+//-------------------------------------Be Somewhere Submit Controller---------------------//
+	public function be_somewhere_submit()
+	{
+	//------------- Get Post Data ----------------------------------//
+    	// Get POST data
+    	$data['create_info'] = $this->input->post(NULL, TRUE);// null, true = all, xss for post data
+    	
+    //------------- Set Variables From Session-----------------------//	
+   		// load session and set user var
+   		$data['username'] = $this->session->userdata('username'); 		    		
+ 		$data['zip'] = $this->session->userdata('zip');
+ 		$data['uid'] = $this->session->userdata('uid');
+ 	
+	//--------------Set if username session NULL redirect to Login--------//
+  		if(empty($data['username']))
+   		{
+			redirect('bethere_home');
+   		} 
+ 		
+ 	//------------- Set Other Variables------------------------------//	 		
+ 		$data['test_output'] = '';
+ 		
+    //------------- Set Header Title -------------------------------------//   
+   		// set header title
+ 		$data['header_title'] = $data['username'].' Be Somewhere'; //used to set header title
+ 		
+ 	 //------------- Set Navigation Buttons ------------------------------//	
+    	// header nav buttons
+    	$data['prev_page'] = site_url('bethere_home/be_somewhere');
+    	$data['log_out_link'] = site_url('bethere_home/logout'); // home page button
+ 		
+ 		
+ 		
+
+var_dump($data['create_info']);
+   	    $this->load->view('templates/header', $data);// links to header template
+    	$this->load->view('pages/be_somewhere_test', $data);// links to login page
+        $this->load->view('templates/footer');// links to footer template
+    	
+	}	
+	
+	
 //-------------------------------------Popular Places-------------------------------------//
 	public function popular_places()
 	{

@@ -35,7 +35,7 @@
 		</div>
 		
 		<div class="place_address">
-			<p class="place_address_p">'.$obj['name'].'</p>
+			<p class="place_address_p"></p>
 		</div>
 		<div>
 			<div class="my_times_button">

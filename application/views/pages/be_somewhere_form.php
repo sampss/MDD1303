@@ -70,7 +70,7 @@
     
     
 		<div class="create_form_div">
-    	<form method="post" action="<?php echo site_url('bethere_home/be_somewhere'); ?>" >
+    	<form method="post" action="<?php echo site_url('bethere_home/be_somewhere_submit'); ?>" >
     	
     		<label for="add_name"><?php echo $label_array['l_name']; ?></label>
     		<input type="<?php echo $add_time['hidden']; ?>" name="add_name" id="add_name" value="<?php echo $add_time['name']; ?>" placeholder="Place Name" />
